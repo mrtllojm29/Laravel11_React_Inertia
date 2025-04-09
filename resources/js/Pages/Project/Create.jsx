@@ -7,6 +7,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Create({ auth }) {
+  // Initialize form state with default values using Inertia's useForm hook
   const { data, setData, post, errors, reset } = useForm({
     image: "",
     name: "",
@@ -15,10 +16,11 @@ export default function Create({ auth }) {
     due_date: "",
   });
 
+  // Handles form submission
   const onSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submission behavior
 
-    post(route("project.store"));
+    post(route("project.store")); // Submit form data to the 'project.store' route
   };
 
   return (
@@ -38,7 +40,7 @@ export default function Create({ auth }) {
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <form
-              onSubmit={onSubmit}
+              onSubmit={onSubmit} // Attach form submission handler
               className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg"
             >
               <div>
@@ -51,7 +53,7 @@ export default function Create({ auth }) {
                   type="file"
                   name="image"
                   className="mt-1 block w-full"
-                  onChange={(e) => setData("image", e.target.files[0])}
+                  onChange={(e) => setData("image", e.target.files[0])} // Update image in form state
                 />
                 <InputError message={errors.image} className="mt-2" />
               </div>
@@ -65,7 +67,7 @@ export default function Create({ auth }) {
                   value={data.name}
                   className="mt-1 block w-full"
                   isFocused={true}
-                  onChange={(e) => setData("name", e.target.value)}
+                  onChange={(e) => setData("name", e.target.value)} // Update name in form state
                 />
 
                 <InputError message={errors.name} className="mt-2" />
@@ -81,7 +83,7 @@ export default function Create({ auth }) {
                   name="description"
                   value={data.description}
                   className="mt-1 block w-full"
-                  onChange={(e) => setData("description", e.target.value)}
+                  onChange={(e) => setData("description", e.target.value)} // Update description in form state
                 />
 
                 <InputError message={errors.description} className="mt-2" />
@@ -98,7 +100,7 @@ export default function Create({ auth }) {
                   name="due_date"
                   value={data.due_date}
                   className="mt-1 block w-full"
-                  onChange={(e) => setData("due_date", e.target.value)}
+                  onChange={(e) => setData("due_date", e.target.value)} // Update due_date in form state
                 />
 
                 <InputError message={errors.due_date} className="mt-2" />
@@ -110,7 +112,7 @@ export default function Create({ auth }) {
                   name="status"
                   id="project_status"
                   className="mt-1 block w-full"
-                  onChange={(e) => setData("status", e.target.value)}
+                  onChange={(e) => setData("status", e.target.value)} // Update status in form state
                 >
                   <option value="">Select Status</option>
                   <option value="pending">Pending</option>
